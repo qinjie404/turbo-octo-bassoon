@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fulan.server.dao.LoggerDao">
+
+    <insert id="addLoggerInfo" parameterType="com.fulan.server.model.LoggerEntity">
+        insert into t_logger_infos(
+          ali_client_ip,
+          ali_uri,
+          ali_type,
+          ali_method,
+          ali_param_data,
+          ali_session_id,
+          ali_time,
+          ali_return_data,
+          ali_http_status_code,
+          ali_time_consuming
+        )
+        values (
+          #{clientIp},
+          #{uri},
+          #{type},
+          #{method},
+          #{paramData},
+          #{sessionId},
+          current_timestamp(),
+          #{returnData},
+          #{httpStatusCode},
+          #{timeConsuming}
+        )
+    </insert>
+
+</mapper>

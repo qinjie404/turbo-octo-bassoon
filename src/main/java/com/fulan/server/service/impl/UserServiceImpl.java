@@ -3,9 +3,9 @@ package com.fulan.server.service.impl;
 import com.fulan.server.dao.UserDao;
 import com.fulan.server.model.User;
 import com.fulan.server.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    @Resource
+    @Autowired
     UserDao userDao;
     @Override
     public List<User> queryUser() {

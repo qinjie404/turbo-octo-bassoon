@@ -28,7 +28,7 @@ public class RedisTest {
         Jedis jedis = new Jedis("127.0.0.1", 6379);
         jedis.auth("123456");
         // 进行设值操作
-        List<DemoEntity> demoEntities = demoService.selecDemoListByName("demo测试");
+        List<DemoEntity> demoEntities = demoService.selecDemoListByName("transaction1");
         jedis.set("username", JSON.toJSONString(demoEntities));
         // 从redis中取值
         List<DemoEntity> demoEntities1 = (List<DemoEntity>)JSON.parse(jedis.get("username"));

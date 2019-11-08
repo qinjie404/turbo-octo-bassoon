@@ -2,5 +2,7 @@
 <project version="4">
   <component name="Encoding" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/upload/业务梳理.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/upload/秦杰-本周计划.txt" charset="GBK" />
   </component>
 </project>

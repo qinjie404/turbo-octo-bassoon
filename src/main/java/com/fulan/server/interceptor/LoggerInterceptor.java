@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 获取请求参数
  * @author 13862
  */
 public class LoggerInterceptor implements HandlerInterceptor {

@@ -12,7 +12,7 @@ public final class ApiResultGenerator
      * @param msg 返回消息内容
      * @return
      */
-    public static ApiResult result(boolean flag, String msg, Throwable throwable)
+    public static ApiResult result(boolean flag, String msg)
     {
         //创建返回对象
         ApiResult apiResult = ApiResult.newInstance();
@@ -26,8 +26,8 @@ public final class ApiResultGenerator
      * @param msg 执行失败后的错误消息内容
      * @return
      */
-    public static ApiResult errorResult(String msg, Throwable throwable)
+    public static ApiResult errorResult(String msg)
     {
-        return result(false,msg,throwable);
+        return result(false,msg);
     }
 }

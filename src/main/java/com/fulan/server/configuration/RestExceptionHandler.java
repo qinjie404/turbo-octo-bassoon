@@ -20,6 +20,6 @@ public class RestExceptionHandler
     @ExceptionHandler
     @ResponseStatus
     public ApiResult runtimeExceptionHandler(Exception e) {
-        return ApiResultGenerator.errorResult(e.toString(),e);
+        return ApiResultGenerator.errorResult(e.toString());
     }
 }

@@ -172,6 +172,25 @@
             <artifactId>freemarker</artifactId>
             <version>2.3.23</version>
         </dependency>
+
+        <!--<dependency>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-lite-core</artifactId>
+            <version>2.1.5</version>
+        </dependency>-->
+
+        <!-- 使用springframework自定义命名空间时引入 -->
+       <!-- <dependency>
+            <groupId>com.dangdang</groupId>
+            <artifactId>elastic-job-lite-spring</artifactId>
+            <version>2.1.5</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>1.1.2-beta5</version>
+        </dependency>
     </dependencies>
 
     <build>

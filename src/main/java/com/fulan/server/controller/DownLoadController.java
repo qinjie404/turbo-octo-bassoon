@@ -44,7 +44,7 @@ public class DownLoadController {
         res.setHeader("Content-Disposition", "attachment;filename=" + name);
         byte[] buff = new byte[1024];
         BufferedInputStream bis = null;
-        OutputStream os;
+        OutputStream os = null;
         try {
             os = res.getOutputStream();
             bis = new BufferedInputStream(new FileInputStream(file));
@@ -58,6 +58,7 @@ public class DownLoadController {
         } finally {
             try {
                 bis.close();
+                os.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

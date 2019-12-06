@@ -4,6 +4,7 @@ package com.fulan.server;
 import com.alibaba.excel.EasyExcelFactory;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.*;
+import com.fulan.server.listener.ExcelListener;
 import com.fulan.server.model.WriteModel;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.junit.Test;
@@ -27,8 +28,13 @@ public class EasyExcelTest {
     @Test
     public void writeExcel_1() throws IOException {
 
+        String filePath = "F:" + File.separator + "easyexcel" + File.separator;
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.mkdir();
+        }
         //文件输出位置
-        OutputStream os = new FileOutputStream("F:" + File.separator + "easyexcel" + File.separator + "test1.xlsx");
+        OutputStream os = new FileOutputStream(filePath + "test1.xlsx");
         ExcelWriter ew = EasyExcelFactory.getWriter(os);
         //以WriteModel.class为模板生成表头
         Sheet sheet = new Sheet(1, 0, WriteModel.class);
@@ -39,6 +45,31 @@ public class EasyExcelTest {
         os.close();
     }
 
+
+    /**
+     * 解析excel
+     */
+    @Test
+    public void parseExcel() {
+        InputStream in = null;
+        try {
+            String filePath = "F:" + File.separator + "easyexcel" + File.separator + "test1.xlsx";
+            File file = new File(filePath);
+            in = new BufferedInputStream(new FileInputStream(file));
+            //读取07版的excel
+            ExcelListener excelListener = new ExcelListener();
+            EasyExcelFactory.readBySax(in, new Sheet(1, 1,WriteModel.class), excelListener);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /**
      * 自定义表头
      *
@@ -46,8 +77,13 @@ public class EasyExcelTest {
      */
     @Test
     public void writeExcel_2() throws IOException {
+        String filePath = "F:" + File.separator + "easyexcel" + File.separator;
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.mkdir();
+        }
         //文件最终写入位置
-        OutputStream os = new FileOutputStream("F:" + File.separator + "easyexcel" + File.separator + "test2.xlsx");
+        OutputStream os = new FileOutputStream(filePath + "test2.xlsx");
         ExcelWriter ew = EasyExcelFactory.getWriter(os);
         //创建一个sheet页
         Sheet sheet = new Sheet(1, 0);
@@ -69,7 +105,7 @@ public class EasyExcelTest {
 
     private TableStyle createTableStyle() {
         TableStyle tableStyle = new TableStyle();
-        Font headFont=new Font();
+        Font headFont = new Font();
         //是否加粗
         headFont.setBold(true);
         //字体大小
@@ -78,9 +114,9 @@ public class EasyExcelTest {
         headFont.setFontName("楷体");
         tableStyle.setTableHeadFont(headFont);
         tableStyle.setTableHeadBackGroundColor(IndexedColors.LIGHT_YELLOW);
-        Font contentFont=new Font();
+        Font contentFont = new Font();
         contentFont.setBold(false);
-        contentFont.setFontHeightInPoints((short)10);
+        contentFont.setFontHeightInPoints((short) 10);
         contentFont.setFontName("宋体");
         tableStyle.setTableContentFont(contentFont);
         tableStyle.setTableContentBackGroundColor(IndexedColors.PINK);
@@ -131,7 +167,7 @@ public class EasyExcelTest {
     private List<? extends BaseRowModel> createModelList() {
         List<WriteModel> writeModelList = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
-            WriteModel writeModel = WriteModel.builder().name("姓名" + i).password("密码" + i).age(i + 1).build();
+            WriteModel writeModel = WriteModel.builder().id(i+"").name("姓名" + i).age(i + 1).build();
             writeModelList.add(writeModel);
         }
         return writeModelList;

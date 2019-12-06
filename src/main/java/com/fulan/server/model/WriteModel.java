@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class WriteModel extends BaseRowModel {
-    @ExcelProperty(value = "姓名",index = 0)
+    @ExcelProperty(value = "ID",index = 0)
+    private String id;
+    @ExcelProperty(value = "姓名",index = 1)
     private String name;
-    @ExcelProperty(value = "密码",index = 1)
-    private String password;
     @ExcelProperty(value = "年龄",index = 2)
     private Integer age;
 

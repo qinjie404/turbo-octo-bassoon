@@ -5,6 +5,8 @@ import com.alibaba.excel.metadata.BaseRowModel;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.fulan.server.model.WriteModel;
+import com.fulan.server.service.ExcelService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,15 @@ import java.util.List;
 @RequestMapping("/excel")
 public class ExcelController {
 
+    @Autowired
+    private ExcelService excelService;
+
+    /**
+     * 导出excel
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @GetMapping("/downLoad")
     public void excelDownload(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ServletOutputStream out = response.getOutputStream();
@@ -38,12 +49,17 @@ public class ExcelController {
         out.close();
     }
 
+    /**
+     * 造数据
+     * @return
+     */
     private List<? extends BaseRowModel> createModelList() {
         List<WriteModel> writeModelList = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
-            WriteModel writeModel = WriteModel.builder().name("姓名" + i).password("密码" + i).age(i + 1).build();
+            WriteModel writeModel = WriteModel.builder().id(i+"").name("姓名" + i).age(i + 1).build();
             writeModelList.add(writeModel);
         }
         return writeModelList;
     }
+
 }

@@ -5,6 +5,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+/**
+ * 解决在listener中注入service失败的问题
+ * @author 13862
+ */
 @Component
 public class SpringJobBeanFactory implements ApplicationContextAware {
     private static ApplicationContext applicationContext;

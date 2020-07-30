@@ -1,9 +1,9 @@
 package com.fulan.server;
 
+import com.fulan.server.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -11,10 +11,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class DemoApplicationTests {
 
-    @Test
-    public void contextLoads() {
-        Logger logger = LoggerFactory.getLogger(DemoApplicationTests.class);
+    @Autowired
+    private UserService userService;
 
+    @Test
+    public void getUserListByPage() {
+        userService.queryUser();
     }
 
 }
